@@ -1,15 +1,4 @@
-/* 
-Apibrėžkite paskirtus du predikatus pagal nurodytas sąlygas. 
-Atkreipkite dėmesį į amžino ciklo galimybę vykdymo metu. 
-Nustatykite, kokioms laisvų ir suvaržytų kintamųjų kombinacijoms 
-gali būti užduodami tikslai. Pirmajam paskirtajam predikatui 
-(1.x arba 2.x užduoties variantui) pateikite paaiškinantį 
-brėžinį: 1.x variantui - kelių žemėlapį, 2.x variantui - studentų amžiaus sąryšio diagramą. 
-Brėžinį braižyti galima ir popieriuje arba kuria nors kompiuterių programa (pvz., Gimp). 
-Atkreipkite dėmesį, kad ir nubraižytą brėžinį reikia įkelti į virtualią mokymosi aplinką. 
-Mokėkite paaiškinti, kaip Prolog vykdo programą, kaip vykdoma paieška. 
-Mokėkite naudoti ir paaiškinti trasavimą (trace.).
-*/
+/* Maksim Jaroslavcevas 4 kursas 2212160 */
 
 /* 1. Duotas miestus jungiančių kelių tinklas. 
 Keliai vienakrypčiai, nesudarantys ciklų. 
@@ -43,3 +32,31 @@ Sum = s(s(s(s(s(nul))))).
 
 suma(Sk1, nul, Sk1).
 suma(Sk1, s(Sk2_liko), s(Suma_liko)) :- suma(Sk1, Sk2_liko, Suma_liko).
+
+/* 
+Query examples (1.2 variant)
+1. Galima nuvaziuoti is Shroomland, Berryville lygiai 130 kilometru
+    ?- nuvaziuoti_lyg_L(shroomland, berryville, 130).
+    true
+
+2. Galima nuvaziuoti is Shroomland, Berryville lygiai 100 kilometru
+    ?- nuvaziuoti_lyg_L(shroomland, berryville, 100).
+    false.
+
+3. Galima nuvaziuoti is Berryville,  Shroomland lygiai 130 kilometru
+    ?- nuvaziuoti_lyg_L(berryville, shroomland, 130).
+    false.
+
+Query examples (6.1 variant)
+1. 3 + 2 = 5
+    ?- suma(s(s(s(nul))), s(s(nul)), Sum).
+    Sum = s(s(s(s(s(nul))))) .
+
+2. 0 + 1 = 1
+    ?- suma(nul,s(nul),Sum).
+    Sum = s(nul) .
+
+3. 1 + 0 = 0
+    ?- suma(s(nul),nul,Sum).
+    Sum = s(nul) .
+*/
