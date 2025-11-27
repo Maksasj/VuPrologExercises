@@ -1,3 +1,5 @@
+/* Maksim Jaroslavcevas 4 kursas 2212160 */
+
 /* 1.1, 2.2, 3.3, 4.9 */
 
 /* Paprasti predikatai su sveikųjų skaičių sąrašais
@@ -52,12 +54,22 @@ list_length([_ | XS], N) :- list_length(XS, N1), N is N1 + 1.
 didesnis_pagal_reiksme([X | _], [Y | _]) :- X > Y, !.
 didesnis_pagal_reiksme([X | XS], [Y | YS]) :- X =:= Y, didesnis_pagal_reiksme(XS, YS).
 
-didesnis(S1, S2) :-
-    list_length(S1, L1),
-    list_length(S2, L2),
-    (
-        L1 > L2 -> true, !
-        ;
-        L1 =:= L2,
-        didesnis_pagal_reiksme(S1, S2)
-    ).
+didesnis(S1, S2) :- list_length(S1, L1), list_length(S2, L2), (L1 > L2 -> true, !; L1 =:= L2, didesnis_pagal_reiksme(S1, S2)).
+
+/*
+Query examples (1.1 variant)
+1. ?- apjungti([[a,b],[c],[d,[e,f], g]],R).
+        R = [a,b,c,d,[e,f],g].
+
+Query examples (2.2 variant)
+1. ?- apjungti([[a,b],[c],[d,[e,f], g]],R).
+        R = [a,b,c,d,[e,f],g].
+
+Query examples (3.3 variant)
+?- nesikartoja([a,b,a,d] ,R).
+    R = [a,b,d].
+
+Query examples (4.9 variant)    
+?- didesnis([1,4,6,1,3,4],[9,8]).
+    true.
+*/
