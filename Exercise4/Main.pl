@@ -6,7 +6,7 @@ sutalpinti visus akmenis į kuprines (kuprinės gali likti ir ne pilnai užpildy
     5.1 be papildomų apribojimų;
 */
 rasti_sprendini(Akmenys, Talpos, Solution) :-
-    paruosti_kuprines(Talpos, 1_000, StartKuprines),
+    paruosti_kuprines(Talpos, 1_000_000, StartKuprines),
     paskirstyti_akmenis(Akmenys, StartKuprines, Solution).
 
 paruosti_kuprines([], _, []) :- !.
@@ -30,7 +30,7 @@ print_solution(Akmenys, Talpos) :-
     rasti_sprendini(Akmenys, Talpos, Solution),
     print_kuprine(Solution).
 
-print_kuprine([]) :- ! 
+print_kuprine([]) :- !.
 print_kuprine([[Id, Laisva, Akmenys] | Likusios]) :-
     format('Kuprines Id. ~w: Akmeno ~w, liko vietos ~w~n', [Id, Akmenys, Laisva]),
     print_kuprine(Likusios).
@@ -54,13 +54,13 @@ Query examples
     Kuprine Nr. 1001: Akmenys [3,5], liko vietos 0
     true ;
 
-1. ?- rasti_sprendini([10], [7], R).
+3. ?- rasti_sprendini([10], [7], R).
         false.
 
-1. ?- rasti_sprendini([7], [10], R).
+4. ?- rasti_sprendini([7], [10], R).
         R = [[1000, 3, [7]]] ;
         false.
-        
-1. ?- rasti_sprendini([1, 1, 1, 1, 1], [5], R).
+
+5. ?- rasti_sprendini([1, 1, 1, 1, 1], [5], R).
     R = [[1000, 0, [1, 1, 1, 1, 1]]] ;
 */
